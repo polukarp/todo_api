@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { TodoDto } from 'src/dto/TodoDto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -23,7 +24,7 @@ export class TodosService {
     });
   }
 
-  async update(id: number, data) {
+  async update(id: number, data: TodoDto) {
     return this.prisma.todo.update({
       where: { id },
       data,

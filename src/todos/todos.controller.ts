@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post, Put, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Req,
+} from '@nestjs/common';
 import { TodoDto } from 'src/dto/TodoDto';
 import { TodosService } from './todos.service';
 
@@ -22,16 +31,16 @@ export class TodosController {
   }
 
   @Put('update/:id')
-  async update(@Req() id: number, @Req() data: TodoDto) {
-    return this.todosService.update(id, data);
+  async update(@Param('id') id: number, @Body() data: TodoDto) {
+    return this.todosService.update(Number(id), data);
   }
 
-  @Post('remove/:id')
-  async remove(@Req() id: number) {
-    return this.todosService.remove(id);
+  @Delete('remove/:id')
+  async remove(@Param('id') id: number) {
+    return this.todosService.remove(Number(id));
   }
 
-  @Post('remove-all')
+  @Delete('remove-all')
   async removeAll() {
     return this.todosService.removeAll();
   }
