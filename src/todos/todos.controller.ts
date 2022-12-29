@@ -7,11 +7,14 @@ import {
   Post,
   Put,
   Req,
+  UseGuards,
 } from '@nestjs/common';
 import { TodoDto } from 'src/dto/TodoDto';
+import { AuthGuard } from 'src/guards/auth.guard';
 import { TodosService } from './todos.service';
 
 @Controller('todos')
+@UseGuards(AuthGuard)
 export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
